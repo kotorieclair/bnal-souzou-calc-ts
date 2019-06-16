@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import BnalSouzouCalc from '~/components/BnalSouzouCalc'
+import '~/img/cover.png'
 import {
   initialState as data,
   StateContext as DataStateContext,

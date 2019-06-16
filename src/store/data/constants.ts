@@ -1,0 +1,17 @@
+export const WEAPON_TYPE_BLADE: 'blade' = 'blade'
+export const WEAPON_TYPE_BOW: 'bow' = 'bow'
+export const WEAPON_TYPE_BOW_ALT: 'bow_alt' = 'bow_alt'
+export const WEAPON_TYPE_WHIP: 'whip' = 'whip'
+export const WEAPON_TYPE_GUN: 'gun' = 'gun'
+export const WEAPON_TYPE_ALCHEMY: 'alchemy' = 'alchemy'
+export const WEAPON_TYPE_FIGHT: 'fight' = 'fight'
+
+export const BASE_STATUS_TECH: 'tech' = 'tech'
+export const BASE_STATUS_GENIUS: 'genius' = 'genius'
+export const BASE_STATUS_BEAUTY: 'beauty' = 'beauty'
+export const BASE_STATUS_THEME: 'theme' = 'theme'
+export const BASE_STATUS_TRUTH: 'truth' = 'truth'
+
+export const BATTLE_STATUS_ATK: 'atk' = 'atk'
+export const BATTLE_STATUS_DEF: 'def' = 'def'
+export const BATTLE_STATUS_AVD: 'avd' = 'avd'

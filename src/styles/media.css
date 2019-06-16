@@ -1,0 +1,3 @@
+@value spWidth: 750px;
+@value sp: screen and (max-width: 750px);
+@value pc: screen and (min-width: 751px);

@@ -124,7 +124,7 @@ a:hover {
 
 :global .header_box {
   background-color: mainLight;
-  border: 1px dotted mainDark;
+  border: 1px dotted link;
   box-shadow: 0 0 0 4px mainLight;
   color: gray;
   flex: 0 1 50%;
@@ -152,7 +152,7 @@ a:hover {
 
 :global .help {
   background-color: mainLight;
-  border: 1px dotted mainDark;
+  border: 1px dotted link;
   box-shadow: 0 0 0 4px mainLight;
   color: gray;
   padding: 15px 10px;

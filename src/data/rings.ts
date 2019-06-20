@@ -16,6 +16,7 @@ export const KOUDA_R_BLADE_1 = 13
 export const NAKAHARA_C_BLADE_1 = 14
 export const KOIZUMI_Y_BOW_1 = 15
 export const NIIMI_N_BOW_1 = 16
+export const KITAHARA_H_BOW_1 = 17
 
 const rings: Rings = {
   [TOKUDA_S_BLADE_1]: {
@@ -113,6 +114,12 @@ const rings: Rings = {
     name: '新美南吉ノ指環（弓）',
     weapon: 'bow',
     isAccurate: true,
+  },
+  [KITAHARA_H_BOW_1]: {
+    id: KITAHARA_H_BOW_1,
+    name: '北原白秋ノ指環（弓）',
+    weapon: 'bow',
+    isAccurate: false,
   },
 }
 

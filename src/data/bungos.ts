@@ -90,7 +90,7 @@ const bungos: Bungos = {
     id: 15,
     name: '北原白秋',
     weapon: 'gun',
-    rings: null,
+    rings: [ringIds.KITAHARA_H_BOW_1],
   },
   16: {
     id: 16,

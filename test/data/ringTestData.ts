@@ -89,6 +89,9 @@ const testData: TestRings = {
       battle: { atk: 128, def: 99, avd: 96 },
     },
   },
+  // [ringIds.KITAHARA_H_BOW_1]: {
+  //   id: ringIds.KITAHARA_H_BOW_1,
+  // },
 }
 
 export default testData

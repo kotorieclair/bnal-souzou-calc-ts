@@ -1111,6 +1111,21 @@ const cards: Cards = {
       3: '命中率 +30%',
     },
   },
+  3075: {
+    id: 3075,
+    name: '蓮池ノ歌会-石川啄木',
+    rare: 3,
+    status: {
+      1: { genius: 30, theme: 96 },
+      2: null,
+      3: { genius: 60, theme: 192 },
+    },
+    skill: {
+      1: '降臨上昇率 +30%',
+      2: '降臨上昇率 +30%',
+      3: '降臨上昇率 +60%',
+    },
+  },
 }
 
 export default cards

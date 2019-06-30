@@ -47,6 +47,7 @@ const SlotForm: React.FC<Props> = ({ className, slotId }: Props) => {
   const { bungos, cards, weapons, rings } = React.useContext(DataStateContext)
   const { [slotId]: state } = React.useContext(SlotStateContext)
   const dispatch = React.useContext(SlotDispatchContext)
+  const [isCardSearchOpen, setCardSearchOpen] = React.useState(false)
 
   const sendAnalytics = (action: string, label: string) => {
     if (process.env.NODE_ENV === 'production') {
@@ -121,6 +122,10 @@ const SlotForm: React.FC<Props> = ({ className, slotId }: Props) => {
   const sendTruthAnalytics = () => {
     sendAnalytics('baseStatus', 'ステータス:真実')
   }
+
+  const openCardSearch = React.useCallback(() => {
+    setCardSearchOpen(true)
+  }, [setCardSearchOpen])
 
   useDebounce(state.status.tech, sendTechAnalytics)
   useDebounce(state.status.genius, sendGeniusAnalytics)
@@ -224,6 +229,7 @@ const SlotForm: React.FC<Props> = ({ className, slotId }: Props) => {
             onChange={handleCardLvChange}
           />
         ) : null}
+        <div onClick={openCardSearch}>検索</div>
       </CardInput>
       <StatusInputLabel>文豪のステータス（未入力可）</StatusInputLabel>
       <StatusInput>

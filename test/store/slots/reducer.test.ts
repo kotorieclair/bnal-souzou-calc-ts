@@ -1,4 +1,4 @@
-import { actionTypes, initialState, reducer } from '~/store/slots'
+import { actionTypes, initialState, reducer, State } from '~/store/slots'
 
 describe('store/slots/reducer', () => {
   test(`${actionTypes.SET_BUNGO} sets given bungoId`, () => {
@@ -148,6 +148,43 @@ describe('store/slots/reducer', () => {
           truth: 47,
         },
       },
+    })
+  })
+
+  test(`${
+    actionTypes.COPY_SLOT
+  } copies given from slotId values into given to slotId`, () => {
+    const state: State = {
+      ...initialState,
+      1: {
+        ...initialState[1],
+        bungo: 15,
+        cardId: 30,
+        status: {
+          ...initialState[1].status,
+          genius: 45,
+        },
+      },
+      3: {
+        ...initialState[3],
+        bungo: 20,
+        ring: 3,
+        status: {
+          ...initialState[3].status,
+          tech: 60,
+          genius: 66,
+          beauty: 90,
+        },
+      },
+    }
+    expect(
+      reducer(state, {
+        type: actionTypes.COPY_SLOT,
+        payload: { from: 1, to: 3 },
+      })
+    ).toEqual({
+      ...state,
+      3: { ...state[1] },
     })
   })
 })

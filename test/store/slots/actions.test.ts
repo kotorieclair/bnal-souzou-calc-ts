@@ -63,4 +63,11 @@ describe('store/slots/actions', () => {
       payload: { slotId: 4, truth: 45 },
     })
   })
+
+  test('copySlot() returns correct actionType and payload', () => {
+    expect(actions.copySlot(2, 3)).toEqual({
+      type: actionTypes.COPY_SLOT,
+      payload: { from: 2, to: 3 },
+    })
+  })
 })

@@ -1,5 +1,6 @@
 import { BaseStatus, BungoId, CardId, CardLv, RingId } from '~/store/data'
 import {
+  COPY_SLOT,
   SET_BEAUTY,
   SET_BUNGO,
   SET_CARD_ID,
@@ -22,6 +23,7 @@ export type ActionCreator =
   | typeof setBeauty
   | typeof setTheme
   | typeof setTruth
+  | typeof copySlot
 
 export type Action = ReturnType<ActionCreator>
 
@@ -68,4 +70,9 @@ export const setTheme = (slotId: SlotId, theme: BaseStatus['theme']) => ({
 export const setTruth = (slotId: SlotId, truth: BaseStatus['truth']) => ({
   type: SET_TRUTH,
   payload: { slotId, truth },
+})
+
+export const copySlot = (from: SlotId, to: SlotId) => ({
+  type: COPY_SLOT,
+  payload: { from, to },
 })

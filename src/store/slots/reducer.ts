@@ -1,6 +1,7 @@
 import * as R from 'ramda'
 import { Action } from './actions'
 import {
+  COPY_SLOT,
   SET_BEAUTY,
   SET_BUNGO,
   SET_CARD_ID,
@@ -75,6 +76,10 @@ export const reducer = (state: State, action: Action) => {
     case SET_TRUTH: {
       const { slotId, truth } = action.payload
       return R.assocPath([slotId, 'status', 'truth'], truth, state)
+    }
+    case COPY_SLOT: {
+      const { from, to } = action.payload
+      return R.assoc(String(to), R.clone(state[from]), state)
     }
     default: {
       return state

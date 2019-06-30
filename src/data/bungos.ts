@@ -42,7 +42,7 @@ const bungos: Bungos = {
     id: 7,
     name: '宮沢賢治',
     weapon: 'gun',
-    rings: null,
+    rings: [ringIds.MIYAZAWA_K_BOW_1],
   },
   8: {
     id: 8,

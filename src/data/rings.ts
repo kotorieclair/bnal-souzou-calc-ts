@@ -1,6 +1,6 @@
 import { Rings } from '~/store/data'
 
-export const TOKUDA_S_BLADE_1: number = 1
+export const TOKUDA_S_BLADE_1 = 1
 export const AKUTAGAWA_R_GUN_1 = 2
 export const DAZAI_O_BOW_1 = 3
 export const HAGIWARA_S_WHIP_1 = 4
@@ -17,6 +17,7 @@ export const NAKAHARA_C_BLADE_1 = 14
 export const KOIZUMI_Y_BOW_1 = 15
 export const NIIMI_N_BOW_1 = 16
 export const KITAHARA_H_BOW_1 = 17
+export const MIYAZAWA_K_BOW_1 = 18
 
 const rings: Rings = {
   [TOKUDA_S_BLADE_1]: {
@@ -41,7 +42,7 @@ const rings: Rings = {
     id: HAGIWARA_S_WHIP_1,
     name: '萩原朔太郎ノ指環（鞭）',
     weapon: 'whip',
-    isAccurate: false,
+    isAccurate: true,
   },
   [IZUMI_K_WHIP_1]: {
     id: IZUMI_K_WHIP_1,
@@ -118,6 +119,12 @@ const rings: Rings = {
   [KITAHARA_H_BOW_1]: {
     id: KITAHARA_H_BOW_1,
     name: '北原白秋ノ指環（弓）',
+    weapon: 'bow',
+    isAccurate: false,
+  },
+  [MIYAZAWA_K_BOW_1]: {
+    id: MIYAZAWA_K_BOW_1,
+    name: '宮沢賢治ノ指環（弓）',
     weapon: 'bow',
     isAccurate: false,
   },

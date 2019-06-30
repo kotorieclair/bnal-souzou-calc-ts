@@ -24,7 +24,7 @@ export const getAdjustedCardStatus = (
   lv: CardId
 ): BaseStatus => {
   const adj = lv === 3 ? 2 : lv === 2 ? 1.4 : 1
-  return R.mapObjIndexed((s: number) => s * adj, status[1])
+  return R.mapObjIndexed((s: number) => Math.ceil(s * adj), status[1])
 }
 
 export const combineBaseStatus = (
@@ -32,8 +32,8 @@ export const combineBaseStatus = (
   cardStatus: BaseStatus
 ): BaseStatus => {
   return R.mapObjIndexed((s: number, key: keyof BaseStatus) => {
-    // TODO: マイナスしょり
-    return s + (cardStatus[key] || 0)
+    const status = s + (cardStatus[key] || 0)
+    return status <= 0 ? 1 : status
   }, baseStatus)
 }
 

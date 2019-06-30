@@ -26,9 +26,13 @@ const testData: TestRings = {
   // [ringIds.DAZAI_O_BOW_1]: {
   //   id: ringIds.DAZAI_O_BOW_1,
   // },
-  // [ringIds.HAGIWARA_S_WHIP_1]: {
-  //   id: ringIds.HAGIWARA_S_WHIP_1,
-  // },
+  [ringIds.HAGIWARA_S_WHIP_1]: {
+    id: ringIds.HAGIWARA_S_WHIP_1,
+    status: {
+      base: { tech: 172, genius: 181, beauty: 137, theme: 163, truth: 132 },
+      battle: { atk: 370, def: 443, avd: 39 },
+    },
+  },
   // [ringIds.IZUMI_K_WHIP_1]: {
   //   id: ringIds.IZUMI_K_WHIP_1,
   // },
@@ -91,6 +95,9 @@ const testData: TestRings = {
   },
   // [ringIds.KITAHARA_H_BOW_1]: {
   //   id: ringIds.KITAHARA_H_BOW_1,
+  // },
+  // [ringIds.MIYAZAWA_K_BOW_1]: {
+  //   id: ringIds.MIYAZAWA_K_BOW_1,
   // },
 }
 

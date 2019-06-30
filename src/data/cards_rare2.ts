@@ -202,7 +202,8 @@ const cards: Cards = {
     rare: 2,
     status: {
       1: { tech: -10, theme: -13, truth: 40 },
-      2: { tech: -14, theme: -18, truth: 56 },
+      // 2: { tech: -14, theme: -18, truth: 56 },
+      2: null,
       3: { tech: -20, theme: -26, truth: 80 },
     },
     skill: {

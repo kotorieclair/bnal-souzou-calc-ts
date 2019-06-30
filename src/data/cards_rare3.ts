@@ -1117,6 +1117,22 @@ const cards: Cards = {
     rare: 3,
     status: {
       1: { genius: 30, theme: 96 },
+      // 2: { genius: 42, theme: 135 },
+      2: null,
+      3: { genius: 60, theme: 192 },
+    },
+    skill: {
+      1: '降臨上昇率 +30%',
+      2: '降臨上昇率 +30%',
+      3: '降臨上昇率 +60%',
+    },
+  },
+  3076: {
+    id: 3076,
+    name: '我等海ノ子-新美南吉',
+    rare: 3,
+    status: {
+      1: { genius: 30, theme: 96 },
       2: null,
       3: { genius: 60, theme: 192 },
     },

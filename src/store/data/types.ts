@@ -1,3 +1,4 @@
+import { string } from 'prop-types'
 import {
   BASE_STATUS_BEAUTY,
   BASE_STATUS_GENIUS,
@@ -74,11 +75,32 @@ export interface Card {
   readonly name: string
   readonly rare: 1 | 2 | 3
   readonly status: { [lv in CardLv]?: BaseStatus | null }
-  readonly skill: { [lv in CardLv]?: string } | null
+  // readonly skill: { [lv in CardLv]?: Skill } | null
+  // readonly skill: {
+  //   readonly type: SkillType
+  //   readonly suffix?: string
+  //   readonly amount: { [lv in CardLv]?: number }
+  // } | null
+  readonly skill: {
+    readonly type: SkillType
+    readonly amount: { [lv in CardLv]?: number }
+  } | null
 }
 
 export interface Cards {
-  readonly [id: string]: Card
+  readonly [id: number]: Card
+}
+
+export type SkillType = number
+
+export interface Skill {
+  readonly id: SkillType
+  readonly name: string
+  readonly suffix: string
+}
+
+export interface Skills {
+  readonly [type: number]: Skill
 }
 
 export interface BaseStatus {

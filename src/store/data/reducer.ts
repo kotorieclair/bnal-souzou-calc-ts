@@ -1,8 +1,8 @@
 import * as R from 'ramda'
-import { bungos, cards, rings, weapons } from '~/data'
+import { bungos, cards, rings, skills, weapons } from '~/data'
 import { Action } from './actions'
 import { LOAD_DONE } from './actionTypes'
-import { Bungos, Cards, Rings, Weapons } from './types'
+import { Bungos, Cards, Rings, Skills, Weapons } from './types'
 
 export interface State {
   readonly initialized: boolean
@@ -10,6 +10,7 @@ export interface State {
   readonly weapons: Weapons
   readonly cards: Cards
   readonly rings: Rings
+  readonly skills: Skills
 }
 
 export const initialState: State = {
@@ -18,6 +19,7 @@ export const initialState: State = {
   weapons,
   cards,
   rings,
+  skills,
 }
 
 export const reducer = (state: State, action: Action) => {

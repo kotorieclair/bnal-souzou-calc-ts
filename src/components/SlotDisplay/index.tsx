@@ -43,7 +43,9 @@ import {
 export * from './types'
 
 const SlotDisplay: React.FC<Props> = ({ className, slotId }: Props) => {
-  const { bungos, cards, weapons, rings } = React.useContext(DataStateContext)
+  const { bungos, cards, weapons, rings, skills } = React.useContext(
+    DataStateContext
+  )
   const { [slotId]: state } = React.useContext(SlotStateContext)
 
   const currentBungo: Bungo | null = state.bungo ? bungos[state.bungo] : null
@@ -60,9 +62,17 @@ const SlotDisplay: React.FC<Props> = ({ className, slotId }: Props) => {
       ? currentCard.status[currentCardLv] ||
         getAdjustedCardStatus(currentCard.status, currentCardLv)
       : null
-  const currentCardSkill: string | null =
+  const currentCardSkill: {
+    readonly name: string
+    readonly suffix: string
+    readonly amount: number
+  } | null =
     currentCard && currentCardLv && currentCard.skill
-      ? currentCard.skill[currentCardLv]
+      ? {
+          name: skills[currentCard.skill.type].name,
+          suffix: skills[currentCard.skill.type].suffix,
+          amount: currentCard.skill.amount[currentCardLv],
+        }
       : null
 
   const {
@@ -166,7 +176,13 @@ const SlotDisplay: React.FC<Props> = ({ className, slotId }: Props) => {
         <tbody>
           <tr>
             <th>追加効果</th>
-            <td>{currentCardSkill || ''}</td>
+            <td>
+              {currentCardSkill
+                ? `${currentCardSkill.name} ${addSign(
+                    currentCardSkill.amount
+                  )}${currentCardSkill.suffix}`
+                : null}
+            </td>
           </tr>
         </tbody>
       </SkillTable>

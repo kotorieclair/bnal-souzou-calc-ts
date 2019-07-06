@@ -1,5 +1,5 @@
 import { Cards } from '~/store/data'
-import skills, * as skillTypes from './skills'
+import * as skillTypes from './skills'
 
 const cards: Cards = {
   3001: {

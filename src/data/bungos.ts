@@ -288,7 +288,7 @@ const bungos: Bungos = {
     id: 50,
     name: '夢野久作',
     weapon: 'whip',
-    rings: null,
+    rings: [ringIds.YUMENO_K_BLADE_1],
   },
   51: {
     id: 51,

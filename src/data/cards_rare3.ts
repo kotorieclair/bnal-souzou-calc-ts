@@ -1132,13 +1132,28 @@ const cards: Cards = {
     rare: 3,
     status: {
       1: { tech: 24, beauty: 30 },
-      2: null,
+      2: { tech: 34, beauty: 42 },
       3: { tech: 48, beauty: 60 },
     },
     skill: {
       1: '急所攻撃率 +15%',
       2: '急所攻撃率 +15%',
       3: '急所攻撃率 +30%',
+    },
+  },
+  3077: {
+    id: 3077,
+    name: '星天ニ征矢-正宗白鳥',
+    rare: 3,
+    status: {
+      1: { tech: 24, truth: 24 },
+      2: { tech: 34, truth: 34 },
+      3: { tech: 48, truth: 48 },
+    },
+    skill: {
+      1: '命中率 +15%',
+      2: '命中率 +15%',
+      3: '命中率 +30%',
     },
   },
 }

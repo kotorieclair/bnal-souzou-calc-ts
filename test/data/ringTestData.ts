@@ -99,6 +99,9 @@ const testData: TestRings = {
   // [ringIds.MIYAZAWA_K_BOW_1]: {
   //   id: ringIds.MIYAZAWA_K_BOW_1,
   // },
+  // [ringIds.YUMENO_K_BLADE_1]: {
+  //   id: ringIds.YUMENO_K_BLADE_1,
+  // },
 }
 
 export default testData

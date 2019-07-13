@@ -451,6 +451,21 @@ const cards: Cards = {
       3: '降臨上昇率 +20%',
     },
   },
+  2031: {
+    id: 2031,
+    name: '月下ノ虎-中島敦',
+    rare: 2,
+    status: {
+      1: { theme: 96 },
+      2: { theme: 135 },
+      3: { theme: 192 },
+    },
+    skill: {
+      1: '急所攻撃率 +5%',
+      2: '急所攻撃率 +5%',
+      3: '急所攻撃率 +10%',
+    },
+  },
 }
 
 export default cards

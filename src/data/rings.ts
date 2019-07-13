@@ -18,6 +18,7 @@ export const KOIZUMI_Y_BOW_1 = 15
 export const NIIMI_N_BOW_1 = 16
 export const KITAHARA_H_BOW_1 = 17
 export const MIYAZAWA_K_BOW_1 = 18
+export const YUMENO_K_BLADE_1 = 19
 
 const rings: Rings = {
   [TOKUDA_S_BLADE_1]: {
@@ -126,6 +127,12 @@ const rings: Rings = {
     id: MIYAZAWA_K_BOW_1,
     name: '宮沢賢治ノ指環（弓）',
     weapon: 'bow',
+    isAccurate: false,
+  },
+  [YUMENO_K_BLADE_1]: {
+    id: YUMENO_K_BLADE_1,
+    name: '夢野久作ノ指環（刃）',
+    weapon: 'blade',
     isAccurate: false,
   },
 }

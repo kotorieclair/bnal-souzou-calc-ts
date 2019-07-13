@@ -2,6 +2,7 @@ import * as R from 'ramda'
 import * as React from 'react'
 import CardSearch from '~/components/CardSearch'
 import { Props as SelectInputProps } from '~/components/SelectInput'
+import * as utils from '~/components/utils'
 import {
   BaseStatus,
   Bungo,
@@ -51,12 +52,7 @@ const SlotForm: React.FC<Props> = ({ className, slotId }: Props) => {
   const [isCardSearchOpen, setCardSearchOpen] = React.useState(false)
 
   const sendAnalytics = (action: string, label: string) => {
-    if (process.env.NODE_ENV === 'production') {
-      gtag('event', action, {
-        event_category: 'input',
-        event_label: `${label}/${slotId}`,
-      })
-    }
+    utils.sendGAnalytics(action, 'input', `${label}/${slotId}`)
   }
 
   const handleBungoChange = (id: BungoId) => {

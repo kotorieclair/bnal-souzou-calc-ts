@@ -1,17 +1,8 @@
 import * as R from 'ramda'
 import * as React from 'react'
+import { Props } from './types'
 
-export interface Option {
-  readonly value: string | number
-  readonly label: string
-}
-
-export interface Props {
-  readonly className?: string
-  readonly options: ReadonlyArray<Option>
-  readonly checked: ReadonlyArray<string | number>
-  readonly onChange: (checked: ReadonlyArray<string | number>) => void
-}
+export * from './types'
 
 const CheckboxInput: React.FC<Props> = ({
   className,
@@ -19,12 +10,6 @@ const CheckboxInput: React.FC<Props> = ({
   checked,
   onChange,
 }: Props) => {
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   console.log(e.target.checked)
-  //   return e.target.checked ? [...checked, ]
-  //   onChange(checked)
-  // }
-
   const buildedOptions = options.map(({ value, label }) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const values = e.target.checked

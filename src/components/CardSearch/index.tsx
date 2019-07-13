@@ -3,9 +3,16 @@ import * as React from 'react'
 import CheckboxInput, {
   Props as CheckboxInputProps,
 } from '~/components/CheckboxInput'
+import SearchList, { Props as SearchListProps } from '~/components/SearchList'
 import { cardRareLabels } from '~/components/SlotForm/constants'
 import TextInput from '~/components/TextInput'
-import { StateContext as DataStateContext } from '~/store/data'
+import * as utils from '~/components/utils'
+import {
+  CardId,
+  CardRare,
+  SkillType,
+  StateContext as DataStateContext,
+} from '~/store/data'
 import {
   actions as slotActions,
   DispatchContext as SlotDispatchContext,
@@ -24,24 +31,31 @@ const CardSearch: React.FC<Props> = ({ className, isOpen, slotId }: Props) => {
   const { cards, skills } = React.useContext(DataStateContext)
   const { [slotId]: state } = React.useContext(SlotStateContext)
   const dispatch = React.useContext(SlotDispatchContext)
-  const [rareChecked, setRareChecked] = React.useState<ReadonlyArray<number>>(
+  const [rareChecked, setRareChecked] = React.useState<ReadonlyArray<CardRare>>(
     []
   )
   const [skillChecked, setSkillChecked] = React.useState<
-    ReadonlyArray<number | string>
+    ReadonlyArray<SkillType | string>
   >([])
   const [nameInputted, setNameInputted] = React.useState('')
 
-  const handleRareChange = (checked: ReadonlyArray<number>) => {
+  const handleRareChange = (checked: ReadonlyArray<CardRare>) => {
     setRareChecked(checked)
   }
 
-  const handleSkillChange = (checked: ReadonlyArray<number | string>) => {
+  const handleSkillChange = (checked: ReadonlyArray<SkillType | string>) => {
     setSkillChecked(checked)
   }
 
   const handleNameChange = (inputted: string) => {
     setNameInputted(inputted)
+  }
+
+  const handleCardSelect = (selected: CardId) => {
+    console.log(selected)
+    dispatch(slotActions.setCardId(slotId, selected))
+    // TODO: set cardlv
+    utils.sendGAnalytics('cardId', 'search', `装像/${slotId}`)
   }
 
   const rareOptions: CheckboxInputProps['options'] = React.useMemo(() => {
@@ -58,15 +72,22 @@ const CardSearch: React.FC<Props> = ({ className, isOpen, slotId }: Props) => {
     ]
   }, [Object.keys(skills).length])
 
-  const suggestedCards = Object.values(cards).filter(card => {
-    const skill = card.skill ? card.skill.type : SKILL_NULL_VALUE
-    return (
-      (R.isEmpty(rareChecked) || rareChecked.includes(card.rare)) &&
-      (R.isEmpty(skillChecked) || skillChecked.includes(skill)) &&
-      (!nameInputted || card.name.includes(nameInputted))
-      // nameにかんしてはカタカナ<->ひらがなの相互とか、compositionかdebounce仕込みたい
-    )
-  })
+  const suggestedCards: SearchListProps['list'] = React.useMemo(() => {
+    return Object.values(cards)
+      .filter(card => {
+        const skill = card.skill ? card.skill.type : SKILL_NULL_VALUE
+        return (
+          (R.isEmpty(rareChecked) || rareChecked.includes(card.rare)) &&
+          (R.isEmpty(skillChecked) || skillChecked.includes(skill)) &&
+          (!nameInputted || card.name.includes(nameInputted))
+          // TODO: nameにかんしてはカタカナ<->ひらがなの相互とか、compositionかdebounce仕込みたい
+        )
+      })
+      .map(card => ({
+        value: card.id,
+        name: card.name,
+      }))
+  }, [rareChecked.length, skillChecked.length, nameInputted])
 
   return (
     <div className={className}>
@@ -91,11 +112,7 @@ const CardSearch: React.FC<Props> = ({ className, isOpen, slotId }: Props) => {
         input: name
         <TextInput value={nameInputted} onInput={handleNameChange} />
       </div>
-      <ul>
-        {suggestedCards.map(c => (
-          <li key={c.id}>{c.name}</li>
-        ))}
-      </ul>
+      <SearchList list={suggestedCards} onSelect={handleCardSelect} />
     </div>
   )
 }

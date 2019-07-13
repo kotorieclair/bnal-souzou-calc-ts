@@ -70,10 +70,12 @@ export type CardId = number
 
 export type CardLv = 1 | 2 | 3
 
+export type CardRare = 1 | 2 | 3
+
 export interface Card {
   readonly id: CardId
   readonly name: string
-  readonly rare: 1 | 2 | 3
+  readonly rare: CardRare
   readonly status: { [lv in CardLv]?: BaseStatus | null }
   // readonly skill: { [lv in CardLv]?: Skill } | null
   // readonly skill: {

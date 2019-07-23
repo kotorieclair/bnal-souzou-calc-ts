@@ -1,5 +1,17 @@
 import * as React from 'react'
 import {
+  BASE_STATUS_LABELS,
+  BATTLE_STATUS_LABELS,
+  INACCURATE_SIGN,
+  LEVEL_PREFIX,
+} from '~/components/constants'
+import {
+  addSign,
+  getAdjustedCardStatus,
+  getCalculatedBattleStatus,
+  numToStars,
+} from '~/components/utils'
+import {
   BaseStatus,
   Bungo,
   Card,
@@ -9,11 +21,6 @@ import {
   Weapon,
 } from '~/store/data'
 import { StateContext as SlotStateContext } from '~/store/slots'
-import {
-  baseStatusLabels,
-  battleStatusLabels,
-  INACCURATE_SIGN,
-} from './constants'
 import {
   BaseTable,
   BattleTable,
@@ -33,12 +40,6 @@ import {
   WeaponName,
 } from './styles'
 import { Props } from './types'
-import {
-  addSign,
-  getAdjustedCardStatus,
-  getCalculatedBattleStatus,
-  numToStars,
-} from './utils'
 
 export * from './types'
 
@@ -104,7 +105,14 @@ const SlotDisplay: React.FC<Props> = ({ className, slotId }: Props) => {
           ) : (
             ''
           )}
-          {currentCardLv ? <CardInfoLv>Lv.{currentCardLv}</CardInfoLv> : ''}
+          {currentCardLv ? (
+            <CardInfoLv>
+              {LEVEL_PREFIX}
+              {currentCardLv}
+            </CardInfoLv>
+          ) : (
+            ''
+          )}
           {currentCard &&
           currentCardLv &&
           !currentCard.status[currentCardLv] ? (
@@ -117,12 +125,12 @@ const SlotDisplay: React.FC<Props> = ({ className, slotId }: Props) => {
       <BaseTable>
         <tbody>
           <tr>
-            {baseStatusLabels.map(status => (
+            {BASE_STATUS_LABELS.map(status => (
               <th key={status.id}>{status.label}</th>
             ))}
           </tr>
           <tr>
-            {baseStatusLabels.map(status => (
+            {BASE_STATUS_LABELS.map(status => (
               <td key={status.id}>
                 {currentCardStatus && currentCardStatus[status.id] ? (
                   <StatusText
@@ -141,12 +149,12 @@ const SlotDisplay: React.FC<Props> = ({ className, slotId }: Props) => {
       <BattleTable>
         <tbody>
           <tr>
-            {battleStatusLabels.map(status => (
+            {BATTLE_STATUS_LABELS.map(status => (
               <th key={status.id}>{status.label}</th>
             ))}
           </tr>
           <tr>
-            {battleStatusLabels.map(status => (
+            {BATTLE_STATUS_LABELS.map(status => (
               <td key={status.id}>
                 {cardDiffBattleStatus ? (
                   <StatusText

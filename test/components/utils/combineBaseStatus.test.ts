@@ -1,6 +1,6 @@
-import { combineBaseStatus } from '~/components/SlotDisplay/utils'
+import { combineBaseStatus } from '~/components/utils'
 
-describe('components/SlotDisplay/utils/combineBaseStatus()', () => {
+describe('components/utils/combineBaseStatus()', () => {
   test('adds given two BaseStatus values', () => {
     const a = {
       tech: 10,

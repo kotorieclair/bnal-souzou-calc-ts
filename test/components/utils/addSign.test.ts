@@ -1,6 +1,6 @@
-import { addSign } from '~/components/SlotDisplay/utils'
+import { addSign } from '~/components/utils'
 
-describe('components/SlotDisplay/utils/addSign()', () => {
+describe('components/utils/addSign()', () => {
   test('returns a number with plus sign for a given positive number', () => {
     expect(addSign(3)).toBe('+3')
   })

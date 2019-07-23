@@ -1,8 +1,16 @@
 import * as R from 'ramda'
 import * as React from 'react'
 import CardSearch from '~/components/CardSearch'
+import {
+  BUNGO_WEAPON_LABELS,
+  CARD_RARE_LABELS,
+  INACCURATE_SIGN,
+  LEVEL_PREFIX,
+  WEAPON_OPTION_BOW,
+  WEAPON_OPTION_SPECIAL,
+} from '~/components/constants'
 import { Props as SelectInputProps } from '~/components/SelectInput'
-import * as utils from '~/components/utils'
+import { getCardLvOfCard, sendEventAnalytics } from '~/components/utils'
 import {
   BaseStatus,
   Bungo,
@@ -22,13 +30,6 @@ import {
   DispatchContext as SlotDispatchContext,
   StateContext as SlotStateContext,
 } from '~/store/slots'
-import {
-  bungoWeaponLabels,
-  cardRareLabels,
-  INACCURATE_SIGN,
-  WEAPON_OPTION_BOW,
-  WEAPON_OPTION_SPECIAL,
-} from './constants'
 import { useDebounce } from './hooks'
 import {
   BungoInput,
@@ -52,7 +53,7 @@ const SlotForm: React.FC<Props> = ({ className, slotId }: Props) => {
   const [isCardSearchOpen, setCardSearchOpen] = React.useState(false)
 
   const sendAnalytics = (action: string, label: string) => {
-    utils.sendGAnalytics(action, 'input', `${label}/${slotId}`)
+    sendEventAnalytics(action, 'input', `${label}/${slotId}`)
   }
 
   const handleBungoChange = (id: BungoId) => {
@@ -68,9 +69,9 @@ const SlotForm: React.FC<Props> = ({ className, slotId }: Props) => {
 
   const handleCardIdChange = (id: CardId) => {
     dispatch(slotActions.setCardId(slotId, id))
-    if (state.cardLv === null || !cards[id].status[state.cardLv]) {
-      const lv = parseInt(Object.keys(cards[id].status)[0], 10)
-      dispatch(slotActions.setCardLv(slotId, lv as CardLv))
+    const lv = getCardLvOfCard(state.cardLv, cards[id])
+    if (lv !== state.cardLv) {
+      dispatch(slotActions.setCardLv(slotId, lv))
     }
     sendAnalytics('cardId', '装像')
   }
@@ -131,7 +132,7 @@ const SlotForm: React.FC<Props> = ({ className, slotId }: Props) => {
   useDebounce(state.status.truth, sendTruthAnalytics)
 
   const bungoOptions: SelectInputProps['options'] = React.useMemo(() => {
-    return bungoWeaponLabels.map(({ id, label }) => {
+    return BUNGO_WEAPON_LABELS.map(({ id, label }) => {
       const weaponFilter =
         id === WEAPON_OPTION_BOW
           ? [WEAPON_TYPE_BOW, WEAPON_TYPE_BOW_ALT]
@@ -160,7 +161,7 @@ const SlotForm: React.FC<Props> = ({ className, slotId }: Props) => {
       ...(currentBungo.rings
         ? currentBungo.rings.map(ring => ({
             label: `${weapons[rings[ring].weapon].name}${
-              !rings[ring].isAccurate ? INACCURATE_SIGN : ''
+              !rings[ring].isAccurate ? ` ${INACCURATE_SIGN}` : ''
             }`,
             value: ring,
           }))
@@ -169,7 +170,7 @@ const SlotForm: React.FC<Props> = ({ className, slotId }: Props) => {
   }, [state.bungo])
 
   const cardIdOptions: SelectInputProps['options'] = React.useMemo(() => {
-    return cardRareLabels.map(({ id, label }) => ({
+    return CARD_RARE_LABELS.map(({ id, label }) => ({
       label,
       optgroup: Object.values(cards)
         .filter((card: Card) => card.rare === id)
@@ -185,7 +186,7 @@ const SlotForm: React.FC<Props> = ({ className, slotId }: Props) => {
     return Object.values(
       R.mapObjIndexed(
         (status: BaseStatus | null, lv) => ({
-          label: `Lv.${lv}${!status ? INACCURATE_SIGN : ''}`,
+          label: `${LEVEL_PREFIX}${lv}${!status ? ` ${INACCURATE_SIGN}` : ''}`,
           value: parseInt(lv, 10),
         }),
         selectedCardStatus

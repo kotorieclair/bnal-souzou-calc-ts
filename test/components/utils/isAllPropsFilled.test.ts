@@ -1,6 +1,6 @@
-import { isAllPropsFilled } from '~/components/SlotDisplay/utils'
+import { isAllPropsFilled } from '~/components/utils'
 
-describe('components/SlotDisplay/utils/isAllPropsFilled()', () => {
+describe('components/utils/isAllPropsFilled()', () => {
   test('returns true when all props are not null', () => {
     expect(isAllPropsFilled({ a: 'a', b: [2, 3], c: 1 })).toBeTruthy()
   })

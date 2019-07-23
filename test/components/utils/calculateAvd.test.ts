@@ -1,4 +1,4 @@
-import { calculateAvd } from '~/components/SlotDisplay/utils'
+import { calculateAvd } from '~/components/utils'
 import { Weapons } from '~/store/data'
 
 const testWeapons: Weapons = {
@@ -30,7 +30,7 @@ const testStatus = {
   truth: 50,
 }
 
-describe('components/SlotDisplay/utils/calculateAvd()', () => {
+describe('components/utils/calculateAvd()', () => {
   test('returns correct akt value for weapon other than bow', () => {
     const result =
       (testStatus.tech + testStatus.beauty) / testWeapons.blade.adjustment.avd

@@ -1,8 +1,8 @@
-import { getCalculatedBattleStatus } from '~/components/SlotDisplay/utils'
+import { getCalculatedBattleStatus } from '~/components/utils'
 import { weapons } from '~/data'
 import { BaseStatus, BattleStatus } from '~/store/data'
 
-describe('components/SlotDisplay/getCalculatedBattleStatus()', () => {
+describe('components/utils/getCalculatedBattleStatus()', () => {
   test('returns correct cardDiff status when only card BaseStatus is given', () => {
     const weapon = weapons.blade
     const originalBaseStatus: BaseStatus = {

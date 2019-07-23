@@ -1,23 +1,27 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-export interface List {
+export interface ListItem {
   readonly value: number | string
   readonly name: string
 }
 
 export interface Props {
   readonly className?: string
-  readonly list: ReadonlyArray<List>
-  readonly onSelect: (selected: List['value']) => void
+  readonly list: ReadonlyArray<ListItem>
+  readonly onSelect: (selected: ListItem['value']) => void
+  readonly listBuilder: (item: ListItem) => {}
 }
 
 export const SearchListContainer = styled.ul``
+
+export const SearchListItem = styled.li``
 
 const SearchList: React.FC<Props> = ({
   className,
   list = [],
   onSelect,
+  listBuilder,
 }: Props) => {
   const buildedList = React.useMemo(() => {
     return list.map(item => {
@@ -25,16 +29,16 @@ const SearchList: React.FC<Props> = ({
         onSelect(item.value)
       }
       return (
-        <li key={item.value} onClick={handleClick}>
-          {item.name}
-        </li>
+        <SearchListItem key={item.value} onClick={handleClick}>
+          {listBuilder(item)}
+        </SearchListItem>
       )
     })
-  }, list)
+  }, [list, listBuilder])
 
   return (
     <SearchListContainer className={className}>
-      {buildedList}
+      {list.length ? buildedList : null}
     </SearchListContainer>
   )
 }

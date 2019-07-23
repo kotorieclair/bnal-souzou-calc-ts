@@ -1,7 +1,7 @@
 import * as R from 'ramda'
 import * as React from 'react'
-import SlotNumBadge from '../SlotNumBadge'
-import { SLOT_LENGTH } from './constants'
+import { SLOT_LENGTH } from '~/components/constants'
+import SlotNumBadge from '~/components/SlotNumBadge'
 import {
   BnalSouzouCalcContainer,
   StyledBngoSlot,

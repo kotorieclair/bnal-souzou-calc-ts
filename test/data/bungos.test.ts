@@ -1,8 +1,4 @@
-import {
-  calculateAtk,
-  calculateAvd,
-  calculateDef,
-} from '~/components/SlotDisplay/utils'
+import { calculateAtk, calculateAvd, calculateDef } from '~/components/utils'
 import { bungos, weapons } from '~/data'
 import bungoTestData from './bungoTestData'
 

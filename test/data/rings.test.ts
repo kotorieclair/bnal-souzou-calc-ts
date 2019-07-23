@@ -1,8 +1,4 @@
-import {
-  calculateAtk,
-  calculateAvd,
-  calculateDef,
-} from '~/components/SlotDisplay/utils'
+import { calculateAtk, calculateAvd, calculateDef } from '~/components/utils'
 import { rings, weapons } from '~/data'
 import ringTestData from './ringTestData'
 

@@ -1,4 +1,4 @@
-import { calculateAtk } from '~/components/SlotDisplay/utils'
+import { calculateAtk } from '~/components/utils'
 import { Weapons } from '~/store/data'
 
 const testWeapons: Weapons = {
@@ -30,7 +30,7 @@ const testStatus = {
   truth: 50,
 }
 
-describe('components/SlotDisplay/utils/calculateAtk()', () => {
+describe('components/utils/calculateAtk()', () => {
   test('returns correct akt value for weapon other than bow', () => {
     const result =
       (testStatus.tech +

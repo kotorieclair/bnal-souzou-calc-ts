@@ -1,7 +1,6 @@
-import { getAdjustedCardStatus } from '~/components/SlotDisplay/utils'
-import { BaseStatus } from '~/store/data'
+import { getAdjustedCardStatus } from '~/components/utils'
 
-describe('components/SlotDisplay/utils/getAdjustedCardStatus()', () => {
+describe('components/utils/getAdjustedCardStatus()', () => {
   test('returns correct lv.2 estimated card status', () => {
     const status = {
       1: {

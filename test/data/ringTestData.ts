@@ -102,6 +102,12 @@ const testData: TestRings = {
   // [ringIds.YUMENO_K_BLADE_1]: {
   //   id: ringIds.YUMENO_K_BLADE_1,
   // },
+  // [ringIds.KIKUCHI_K_GUN_1]: {
+  //   id: ringIds.KIKUCHI_K_GUN_1,
+  // },
+  // [ringIds.MORI_O_GUN_1]: {
+  //   id: ringIds.MORI_O_GUN_1,
+  // },
 }
 
 export default testData

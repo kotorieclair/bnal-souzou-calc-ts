@@ -1156,6 +1156,36 @@ const cards: Cards = {
       3: '命中率 +30%',
     },
   },
+  3078: {
+    id: 3078,
+    name: '不思議國巡リ-ルイス・キャロル',
+    rare: 3,
+    status: {
+      1: { genius: 30, beauty: 30 },
+      2: null,
+      3: { genius: 60, beauty: 60 },
+    },
+    skill: {
+      1: '降臨上昇率 +30%',
+      2: '降臨上昇率 +30%',
+      3: '降臨上昇率 +60%',
+    },
+  },
+  3079: {
+    id: 3079,
+    name: '夏花火咲ク-二葉亭四迷',
+    rare: 3,
+    status: {
+      1: { tech: 24, beauty: 30 },
+      2: null,
+      3: { tech: 48, beauty: 60 },
+    },
+    skill: {
+      1: '急所攻撃率 +15%',
+      2: '急所攻撃率 +15%',
+      3: '急所攻撃率 +30%',
+    },
+  },
 }
 
 export default cards

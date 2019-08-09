@@ -78,7 +78,7 @@ const bungos: Bungos = {
     id: 13,
     name: '森鴎外',
     weapon: 'blade',
-    rings: null,
+    rings: [ringIds.MORI_O_GUN_1],
   },
   14: {
     id: 14,
@@ -300,7 +300,7 @@ const bungos: Bungos = {
     id: 52,
     name: '菊池寛',
     weapon: 'whip',
-    rings: null,
+    rings: [ringIds.KIKUCHI_K_GUN_1],
   },
   53: {
     id: 53,
@@ -335,6 +335,12 @@ const bungos: Bungos = {
   58: {
     id: 58,
     name: '吉井勇',
+    weapon: 'gun',
+    rings: null,
+  },
+  66: {
+    id: 66,
+    name: '草野心平',
     weapon: 'gun',
     rings: null,
   },

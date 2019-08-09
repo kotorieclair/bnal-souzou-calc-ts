@@ -462,6 +462,14 @@ const testData: TestBungos = {
       battle: { atk: 168, def: 110, avd: 66 },
     },
   },
+  66: {
+    id: 66,
+    name: '草野心平',
+    status: {
+      base: { tech: 45, genius: 50, beauty: 45, theme: 50, truth: 40 },
+      battle: { atk: 175, def: 115, avd: 64 },
+    },
+  },
   74: {
     id: 74,
     name: '高浜虚子',

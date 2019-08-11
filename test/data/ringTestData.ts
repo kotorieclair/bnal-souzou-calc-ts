@@ -36,9 +36,13 @@ const testData: TestRings = {
   // [ringIds.IZUMI_K_WHIP_1]: {
   //   id: ringIds.IZUMI_K_WHIP_1,
   // },
-  // [ringIds.NATSUME_S_BOW_1]: {
-  //   id: ringIds.NATSUME_S_BOW_1,
-  // },
+  [ringIds.NATSUME_S_BOW_1]: {
+    id: ringIds.NATSUME_S_BOW_1,
+    status: {
+      base: { tech: 64, genius: 64, beauty: 61, theme: 77, truth: 75 },
+      battle: { atk: 184, def: 145, avd: 139 },
+    },
+  },
   [ringIds.SATOU_H_GUN_1]: {
     id: ringIds.SATOU_H_GUN_1,
     status: {
@@ -107,6 +111,9 @@ const testData: TestRings = {
   // },
   // [ringIds.MORI_O_GUN_1]: {
   //   id: ringIds.MORI_O_GUN_1,
+  // },
+  // [ringIds.NAOKI_S_BLADE_1]: {
+  //   id: ringIds.NAOKI_S_BLADE_1,
   // },
 }
 

@@ -18,8 +18,28 @@ const links = {
   github: 'https://github.com/kotorieclair/bnal-souzou-calc-ts/',
 }
 
+const data = {
+  wantedRings: [
+    '芥川龍之介（銃）',
+    '太宰治（弓）',
+    '泉鏡花（鞭）',
+    '中野重治（銃）',
+    '国木田独歩（銃）',
+    '有島武郎（銃）',
+    '中原中也（刃）',
+    '小泉八雲（弓）',
+    '北原白秋（弓）',
+    '宮沢賢治（弓）',
+    '夢野久作（刃）',
+    '菊池寛（銃）',
+    '森鴎外（銃）',
+    '直木三十五ノ指環（刃）',
+  ]
+}
+
 module.exports = {
   title,
   meta,
   links,
+  data,
 }

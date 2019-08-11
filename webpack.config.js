@@ -95,6 +95,7 @@ module.exports = env => {
         title: pageInfo.title,
         meta: pageInfo.meta,
         links: pageInfo.links,
+        data: pageInfo.data,
       }),
       new MiniCssExtractPlugin({
         filename: '[name].css',

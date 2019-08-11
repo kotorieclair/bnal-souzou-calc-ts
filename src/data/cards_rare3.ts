@@ -1186,6 +1186,21 @@ const cards: Cards = {
       3: '急所攻撃率 +30%',
     },
   },
+  3080: {
+    id: 3080,
+    name: '人魚ノ小夜曲-梶井基次郎',
+    rare: 3,
+    status: {
+      1: { tech: 12, genius: 30, truth: 12 },
+      2: null,
+      3: { tech: 24, genius: 60, truth: 24 },
+    },
+    skill: {
+      1: '命中率 +15%',
+      2: '命中率 +15%',
+      3: '命中率 +30%',
+    },
+  },
 }
 
 export default cards

@@ -287,6 +287,17 @@ const cards: Cards = {
       3: '命中率 +10%',
     },
   },
+  1025: {
+    id: 1025,
+    name: '夏目ト門下生',
+    rare: 1,
+    status: {
+      3: { theme: 48 },
+    },
+    skill: {
+      3: '命中率 +10%',
+    },
+  },
 }
 
 export default cards

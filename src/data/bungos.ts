@@ -282,7 +282,7 @@ const bungos: Bungos = {
     id: 49,
     name: '直木三十五',
     weapon: 'whip',
-    rings: null,
+    rings: [ringIds.NAOKI_S_BLADE_1],
   },
   50: {
     id: 50,

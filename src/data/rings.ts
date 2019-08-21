@@ -22,6 +22,7 @@ export const YUMENO_K_BLADE_1 = 19
 export const KIKUCHI_K_GUN_1 = 20
 export const MORI_O_GUN_1 = 21
 export const NAOKI_S_BLADE_1 = 22
+export const MASAOKA_S_BLADE_1 = 23
 
 const rings: Rings = {
   [TOKUDA_S_BLADE_1]: {
@@ -153,6 +154,12 @@ const rings: Rings = {
   [NAOKI_S_BLADE_1]: {
     id: NAOKI_S_BLADE_1,
     name: '直木三十五ノ指環（刃）',
+    weapon: 'blade',
+    isAccurate: false,
+  },
+  [MASAOKA_S_BLADE_1]: {
+    id: MASAOKA_S_BLADE_1,
+    name: '正岡子規ノ指環（刃）',
     weapon: 'blade',
     isAccurate: false,
   },

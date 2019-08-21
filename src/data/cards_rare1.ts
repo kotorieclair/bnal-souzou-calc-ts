@@ -298,6 +298,21 @@ const cards: Cards = {
       3: '命中率 +10%',
     },
   },
+  1026: {
+    id: 1026,
+    name: '薄いカバン',
+    rare: 1,
+    status: {
+      1: { genius: 15 },
+      2: { genius: 21 },
+      3: { genius: 30 },
+    },
+    skill: {
+      1: '降臨上昇率 +10%',
+      2: '降臨上昇率 +10%',
+      3: '降臨上昇率 +20%',
+    },
+  },
 }
 
 export default cards

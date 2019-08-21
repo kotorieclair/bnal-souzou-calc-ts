@@ -1201,6 +1201,21 @@ const cards: Cards = {
       3: '命中率 +30%',
     },
   },
+  3081: {
+    id: 3081,
+    name: '楽シキ円居-高浜虚子',
+    rare: 3,
+    status: {
+      1: { beauty: 30, theme: 48, truth: 12 },
+      2: null,
+      3: { beauty: 60, theme: 96, truth: 24 },
+    },
+    skill: {
+      1: '降臨上昇率 +30%',
+      2: '降臨上昇率 +30%',
+      3: '降臨上昇率 +60%',
+    },
+  },
 }
 
 export default cards

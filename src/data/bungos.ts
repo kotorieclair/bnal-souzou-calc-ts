@@ -198,7 +198,7 @@ const bungos: Bungos = {
     id: 34,
     name: '正岡子規',
     weapon: 'gun',
-    rings: null,
+    rings: [ringIds.MASAOKA_S_BLADE_1],
   },
   35: {
     id: 35,

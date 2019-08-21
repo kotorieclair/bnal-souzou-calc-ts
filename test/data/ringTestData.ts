@@ -115,6 +115,9 @@ const testData: TestRings = {
   // [ringIds.NAOKI_S_BLADE_1]: {
   //   id: ringIds.NAOKI_S_BLADE_1,
   // },
+  // [ringIds.MASAOKA_S_BLADE_1]: {
+  //   id: ringIds.MASAOKA_S_BLADE_1,
+  // },
 }
 
 export default testData

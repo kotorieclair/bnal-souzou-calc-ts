@@ -97,7 +97,7 @@ const cards: Cards = {
     rare: 3,
     status: {
       1: { genius: 25, beauty: 25 },
-      2: null,
+      2: { genius: 35, beauty: 35 },
       3: { genius: 50, beauty: 50 },
     },
     skill: {
@@ -397,7 +397,7 @@ const cards: Cards = {
     rare: 3,
     status: {
       1: { theme: 96, truth: 24 },
-      2: null,
+      2: { theme: 135, truth: 34 },
       3: { theme: 192, truth: 48 },
     },
     skill: {
@@ -472,7 +472,7 @@ const cards: Cards = {
     rare: 3,
     status: {
       1: { genius: 30, beauty: 30 },
-      2: null,
+      2: { genius: 42, beauty: 42 },
       3: { genius: 60, beauty: 60 },
     },
     skill: {
@@ -1209,6 +1209,51 @@ const cards: Cards = {
       1: { beauty: 30, theme: 48, truth: 12 },
       2: null,
       3: { beauty: 60, theme: 96, truth: 24 },
+    },
+    skill: {
+      1: '降臨上昇率 +30%',
+      2: '降臨上昇率 +30%',
+      3: '降臨上昇率 +60%',
+    },
+  },
+  3082: {
+    id: 3082,
+    name: '夜会ヘノ誘イ-伊藤左千夫',
+    rare: 3,
+    status: {
+      1: { tech: 24, truth: 24 },
+      2: null,
+      3: { tech: 48, truth: 48 },
+    },
+    skill: {
+      1: '急所攻撃率 +15%',
+      2: '急所攻撃率 +15%',
+      3: '急所攻撃率 +30%',
+    },
+  },
+  3083: {
+    id: 3083,
+    name: '菊花ノ集イ-徳田秋声',
+    rare: 3,
+    status: {
+      1: { tech: 24, truth: 24 },
+      2: null,
+      3: { tech: 48, truth: 48 },
+    },
+    skill: {
+      1: '命中率 +15%',
+      2: '命中率 +15%',
+      3: '命中率 +30%',
+    },
+  },
+  3084: {
+    id: 3084,
+    name: '名探偵ノ推理-コナン・ドイル',
+    rare: 3,
+    status: {
+      1: { tech: 24, beauty: 30 },
+      2: null,
+      3: { tech: 48, beauty: 60 },
     },
     skill: {
       1: '降臨上昇率 +30%',

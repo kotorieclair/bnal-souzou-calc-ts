@@ -23,6 +23,9 @@ export const KIKUCHI_K_GUN_1 = 20
 export const MORI_O_GUN_1 = 21
 export const NAOKI_S_BLADE_1 = 22
 export const MASAOKA_S_BLADE_1 = 23
+export const ISHIKAWA_T_BLADE_1 = 24
+export const OZAKI_K_BLADE_1 = 25
+export const EDOGAWA_R_BLADE_1 = 26
 
 const rings: Rings = {
   [TOKUDA_S_BLADE_1]: {
@@ -160,6 +163,24 @@ const rings: Rings = {
   [MASAOKA_S_BLADE_1]: {
     id: MASAOKA_S_BLADE_1,
     name: '正岡子規ノ指環（刃）',
+    weapon: 'blade',
+    isAccurate: false,
+  },
+  [ISHIKAWA_T_BLADE_1]: {
+    id: ISHIKAWA_T_BLADE_1,
+    name: '石川啄木ノ指環（刃）',
+    weapon: 'blade',
+    isAccurate: true,
+  },
+  [OZAKI_K_BLADE_1]: {
+    id: OZAKI_K_BLADE_1,
+    name: '尾崎紅葉ノ指環（刃）',
+    weapon: 'blade',
+    isAccurate: false,
+  },
+  [EDOGAWA_R_BLADE_1]: {
+    id: EDOGAWA_R_BLADE_1,
+    name: '江戸川乱歩ノ指環（刃）',
     weapon: 'blade',
     isAccurate: false,
   },

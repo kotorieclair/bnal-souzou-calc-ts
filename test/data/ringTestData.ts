@@ -118,6 +118,19 @@ const testData: TestRings = {
   // [ringIds.MASAOKA_S_BLADE_1]: {
   //   id: ringIds.MASAOKA_S_BLADE_1,
   // },
+  [ringIds.ISHIKAWA_T_BLADE_1]: {
+    id: ringIds.ISHIKAWA_T_BLADE_1,
+    status: {
+      base: { tech: 127, genius: 131, beauty: 130, theme: 157, truth: 124 },
+      battle: { atk: 401, def: 385, avd: 30 },
+    },
+  },
+  // [ringIds.OZAKI_K_BLADE_1]: {
+  //   id: ringIds.OZAKI_K_BLADE_1,
+  // },
+  // [ringIds.EDOGAWA_R_BLADE_1]: {
+  //   id: ringIds.EDOGAWA_R_BLADE_1,
+  // },
 }
 
 export default testData

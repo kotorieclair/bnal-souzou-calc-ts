@@ -114,7 +114,7 @@ const bungos: Bungos = {
     id: 20,
     name: '尾崎紅葉',
     weapon: 'whip',
-    rings: null,
+    rings: [ringIds.OZAKI_K_BLADE_1],
   },
   21: {
     id: 21,
@@ -126,7 +126,7 @@ const bungos: Bungos = {
     id: 22,
     name: '江戸川乱歩',
     weapon: 'whip',
-    rings: null,
+    rings: [ringIds.EDOGAWA_R_BLADE_1],
   },
   23: {
     id: 23,
@@ -216,7 +216,7 @@ const bungos: Bungos = {
     id: 37,
     name: '石川啄木',
     weapon: 'gun',
-    rings: null,
+    rings: [ringIds.ISHIKAWA_T_BLADE_1],
   },
   38: {
     id: 38,

@@ -1,5 +1,6 @@
 import * as R from 'ramda'
 import * as React from 'react'
+import { Checkbox, CheckboxContainer, CheckboxLabel } from './styles'
 import { Props } from './types'
 
 export * from './types'
@@ -19,19 +20,23 @@ const CheckboxInput: React.FC<Props> = ({
     }
 
     return (
-      <label key={value}>
-        <input
+      <CheckboxLabel key={value}>
+        <Checkbox
           type="checkbox"
           value={value}
           checked={checked.includes(value)}
           onChange={handleChange}
         />
         {label}
-      </label>
+      </CheckboxLabel>
     )
   })
 
-  return <div className={className}>{buildedOptions}</div>
+  return (
+    <CheckboxContainer className={className}>
+      {buildedOptions}
+    </CheckboxContainer>
+  )
 }
 
 export default CheckboxInput

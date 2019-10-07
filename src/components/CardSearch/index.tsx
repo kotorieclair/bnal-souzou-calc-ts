@@ -1,6 +1,5 @@
 import * as R from 'ramda'
 import * as React from 'react'
-import styled from 'styled-components'
 import CheckboxInput, {
   Props as CheckboxInputProps,
 } from '~/components/CheckboxInput'
@@ -28,19 +27,19 @@ import {
 import {
   actions as slotActions,
   DispatchContext as SlotDispatchContext,
-  SlotId,
   StateContext as SlotStateContext,
 } from '~/store/slots'
+import {
+  CardNameSearch,
+  CardSearchContainer,
+  RareSearch,
+  SearchListCardName,
+  SearchListCardStatus,
+  SkillSearch,
+} from './styles'
+import { Props } from './types'
 
-export interface Props {
-  readonly className?: string
-  readonly isOpen: boolean
-  readonly slotId: SlotId
-}
-
-export const SearchCardName = styled.div``
-
-export const SearchCardStatus = styled.div``
+export * from './types'
 
 const CardSearch: React.FC<Props> = ({ className, isOpen, slotId }: Props) => {
   const { cards, skills, bungos, rings, weapons } = React.useContext(
@@ -117,8 +116,8 @@ const CardSearch: React.FC<Props> = ({ className, isOpen, slotId }: Props) => {
       : null
     return (
       <>
-        <SearchCardName>{cards[cardId].name}</SearchCardName>
-        <SearchCardStatus>
+        <SearchListCardName>{cards[cardId].name}</SearchListCardName>
+        <SearchListCardStatus>
           <ul>
             {Object.keys(cards[cardId].status).map(lv => {
               const status = cards[cardId].status[parseInt(lv, 10) as CardLv]
@@ -139,40 +138,37 @@ const CardSearch: React.FC<Props> = ({ className, isOpen, slotId }: Props) => {
               )
             })}
           </ul>
-        </SearchCardStatus>
+        </SearchListCardStatus>
       </>
     )
   }
 
   return (
-    <div className={className}>
+    <CardSearchContainer className={className}>
       card search /{state.ring}/{state.bungo}
-      <div>
-        check: rare
+      <RareSearch>
         <CheckboxInput
           options={rareOptions}
           checked={rareChecked}
           onChange={handleRareChange}
         />
-      </div>
-      <div>
-        check: skill
+      </RareSearch>
+      <SkillSearch>
         <CheckboxInput
           options={skillOptions}
           checked={skillChecked}
           onChange={handleSkillChange}
         />
-      </div>
-      <div>
-        input: name
+      </SkillSearch>
+      <CardNameSearch>
         <TextInput value={nameInputted} onInput={handleNameChange} />
-      </div>
+      </CardNameSearch>
       <SearchList
         list={suggestedCards}
         onSelect={handleCardSelect}
         listBuilder={cardListBuilder}
       />
-    </div>
+    </CardSearchContainer>
   )
 }
 

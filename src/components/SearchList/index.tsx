@@ -1,21 +1,8 @@
 import * as React from 'react'
-import styled from 'styled-components'
+import { SearchListContainer, SearchListItem } from './styles'
+import { Props } from './types'
 
-export interface ListItem {
-  readonly value: number | string
-  readonly name: string
-}
-
-export interface Props {
-  readonly className?: string
-  readonly list: ReadonlyArray<ListItem>
-  readonly onSelect: (selected: ListItem['value']) => void
-  readonly listBuilder: (item: ListItem) => {}
-}
-
-export const SearchListContainer = styled.ul``
-
-export const SearchListItem = styled.li``
+export * from './types'
 
 const SearchList: React.FC<Props> = ({
   className,

@@ -8,7 +8,6 @@ import {
   LEVEL_PREFIX,
   SKILL_OPTION_NULL_VALUE,
 } from '~/components/constants'
-import SearchList, { Props as SearchListProps } from '~/components/SearchList'
 import TextInput from '~/components/TextInput'
 import {
   calculateAtk,
@@ -18,6 +17,7 @@ import {
   sendEventAnalytics,
 } from '~/components/utils'
 import {
+  Card,
   CardId,
   CardLv,
   CardRare,
@@ -32,12 +32,19 @@ import {
 import {
   CardNameSearch,
   CardSearchContainer,
+  CardStatusEstimate,
+  CardStatusLevel,
+  CardStatusSkill,
   RareSearch,
+  SearchList,
   SearchListCardName,
   SearchListCardStatus,
+  SearchListCardStatusItem,
+  SearchListItem,
   SkillSearch,
 } from './styles'
 import { Props } from './types'
+import { addSign } from '~/components/utils'
 
 export * from './types'
 
@@ -90,58 +97,67 @@ const CardSearch: React.FC<Props> = ({ className, isOpen, slotId }: Props) => {
     ]
   }, [Object.keys(skills).length])
 
-  const suggestedCards: SearchListProps['list'] = React.useMemo(() => {
-    return Object.values(cards)
-      .filter(card => {
-        const skill = card.skill ? card.skill.type : SKILL_OPTION_NULL_VALUE
-        return (
-          (R.isEmpty(rareChecked) || rareChecked.includes(card.rare)) &&
-          (R.isEmpty(skillChecked) || skillChecked.includes(skill)) &&
-          (!nameInputted || card.name.includes(nameInputted))
-          // TODO: nameにかんしてはカタカナ<->ひらがなの相互とか、compositionかdebounce仕込みたい
-        )
-      })
-      .map(card => ({
-        value: card.id,
-        name: card.name,
-      }))
+  const suggestedCards: ReadonlyArray<Card> = React.useMemo(() => {
+    return Object.values(cards).filter(card => {
+      const skill = card.skill ? card.skill.type : SKILL_OPTION_NULL_VALUE
+      return (
+        (R.isEmpty(rareChecked) || rareChecked.includes(card.rare)) &&
+        (R.isEmpty(skillChecked) || skillChecked.includes(skill)) &&
+        (!nameInputted || card.name.includes(nameInputted))
+        // TODO: nameにかんしてはカタカナ<->ひらがなの相互とか、compositionかdebounce仕込みたい
+      )
+    })
   }, [rareChecked.length, skillChecked.length, nameInputted])
 
-  const cardListBuilder: SearchListProps['listBuilder'] = item => {
-    const cardId = item.value as CardId
-    const weaponId = state.ring
-      ? rings[state.ring].weapon
-      : state.bungo
-      ? bungos[state.bungo].weapon
-      : null
-    return (
-      <>
-        <SearchListCardName>{cards[cardId].name}</SearchListCardName>
-        <SearchListCardStatus>
-          <ul>
-            {Object.keys(cards[cardId].status).map(lv => {
-              const status = cards[cardId].status[parseInt(lv, 10) as CardLv]
+  const buildedCardList = React.useMemo(() => {
+    return suggestedCards.map(card => {
+      const weaponId = state.ring
+        ? rings[state.ring].weapon
+        : state.bungo
+        ? bungos[state.bungo].weapon
+        : null
+
+      const skill = card.skill ? skills[card.skill.type] : null
+
+      const handleClick = () => {
+        handleCardSelect(card.id)
+      }
+
+      return (
+        <SearchListItem key={card.id} onClick={handleClick}>
+          <SearchListCardName>{card.name}</SearchListCardName>
+          <SearchListCardStatus>
+            {Object.keys(card.status).map(lv => {
+              const status = card.status[parseInt(lv, 10) as CardLv]
               return (
-                <li key={lv}>
-                  <div>
+                <SearchListCardStatusItem key={lv}>
+                  <CardStatusLevel>
                     {LEVEL_PREFIX}
                     {lv}
-                  </div>
+                  </CardStatusLevel>
+                  <CardStatusSkill>
+                    追加効果：
+                    {skill
+                      ? `${skill.name} ${addSign(
+                          card.skill.amount[parseInt(lv, 10) as CardLv]
+                        )}${skill.suffix}`
+                      : 'なし'}
+                  </CardStatusSkill>
                   {weaponId ? (
-                    <div>
-                      {calculateAtk(weapons[weaponId], status)}/
-                      {calculateDef(weapons[weaponId], status)}/
-                      {calculateAvd(weapons[weaponId], status)}
-                    </div>
+                    <CardStatusEstimate>
+                      攻撃：{addSign(calculateAtk(weapons[weaponId], status))} /
+                      防御：{addSign(calculateDef(weapons[weaponId], status))} /
+                      回避：{addSign(calculateAvd(weapons[weaponId], status))}
+                    </CardStatusEstimate>
                   ) : null}
-                </li>
+                </SearchListCardStatusItem>
               )
             })}
-          </ul>
-        </SearchListCardStatus>
-      </>
-    )
-  }
+          </SearchListCardStatus>
+        </SearchListItem>
+      )
+    })
+  }, [suggestedCards, handleCardSelect])
 
   return (
     <CardSearchContainer className={className}>
@@ -163,11 +179,7 @@ const CardSearch: React.FC<Props> = ({ className, isOpen, slotId }: Props) => {
       <CardNameSearch>
         <TextInput value={nameInputted} onInput={handleNameChange} />
       </CardNameSearch>
-      <SearchList
-        list={suggestedCards}
-        onSelect={handleCardSelect}
-        listBuilder={cardListBuilder}
-      />
+      <SearchList>{buildedCardList}</SearchList>
     </CardSearchContainer>
   )
 }

@@ -228,7 +228,6 @@ const SlotForm: React.FC<Props> = ({ className, slotId }: Props) => {
           />
         ) : null}
         <div onClick={openCardSearch}>検索</div>
-        <CardSearch isOpen={isCardSearchOpen} slotId={slotId} />
       </CardInput>
       <StatusInputLabel>文豪のステータス（未入力可）</StatusInputLabel>
       <StatusInput>

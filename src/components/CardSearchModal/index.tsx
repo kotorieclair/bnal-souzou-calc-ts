@@ -10,10 +10,10 @@ import {
 } from '~/components/constants'
 import TextInput from '~/components/TextInput'
 import {
+  addSign,
   calculateAtk,
   calculateAvd,
   calculateDef,
-  getCardLvOfCard,
   sendEventAnalytics,
 } from '~/components/utils'
 import {
@@ -42,13 +42,13 @@ import {
   SearchListCardStatusItem,
   SearchListItem,
   SkillSearch,
+  StyledModal,
 } from './styles'
 import { Props } from './types'
-import { addSign } from '~/components/utils'
 
 export * from './types'
 
-const CardSearch: React.FC<Props> = ({ className, isOpen, slotId }: Props) => {
+const CardSearchModal: React.FC<Props> = ({ className, slotId }: Props) => {
   const { cards, skills, bungos, rings, weapons } = React.useContext(
     DataStateContext
   )
@@ -74,13 +74,10 @@ const CardSearch: React.FC<Props> = ({ className, isOpen, slotId }: Props) => {
     setNameInputted(inputted)
   }
 
-  const handleCardSelect = (selected: CardId) => {
-    dispatch(slotActions.setCardId(slotId, selected))
-    const lv = getCardLvOfCard(state.cardLv, cards[selected])
-    if (lv !== selected) {
-      dispatch(slotActions.setCardLv(slotId, lv))
-    }
-    sendEventAnalytics('cardId', 'search', `装像/${slotId}`)
+  const handleCardSelect = (cardId: CardId, cardLv: CardLv) => {
+    dispatch(slotActions.setCardId(slotId, cardId))
+    dispatch(slotActions.setCardLv(slotId, cardLv))
+    sendEventAnalytics('card', 'search', `装像/${slotId}`)
   }
 
   const rareOptions: CheckboxInputProps['options'] = React.useMemo(() => {
@@ -119,37 +116,39 @@ const CardSearch: React.FC<Props> = ({ className, isOpen, slotId }: Props) => {
 
       const skill = card.skill ? skills[card.skill.type] : null
 
-      const handleClick = () => {
-        handleCardSelect(card.id)
-      }
-
       return (
-        <SearchListItem key={card.id} onClick={handleClick}>
+        <SearchListItem key={card.id}>
           <SearchListCardName>{card.name}</SearchListCardName>
           <SearchListCardStatus>
             {Object.keys(card.status).map(lv => {
-              const status = card.status[parseInt(lv, 10) as CardLv]
+              const cardLv = parseInt(lv, 10) as CardLv
+              const status = card.status[cardLv]
+              const handleClick = () => {
+                handleCardSelect(card.id, cardLv)
+              }
+
               return (
                 <SearchListCardStatusItem key={lv}>
-                  <CardStatusLevel>
+                  <CardStatusLevel onClick={handleClick}>
                     {LEVEL_PREFIX}
                     {lv}
                   </CardStatusLevel>
                   <CardStatusSkill>
-                    追加効果：
                     {skill
-                      ? `${skill.name} ${addSign(
-                          card.skill.amount[parseInt(lv, 10) as CardLv]
-                        )}${skill.suffix}`
-                      : 'なし'}
+                      ? `${skill.name} ${addSign(card.skill.amount[cardLv])}${
+                          skill.suffix
+                        }`
+                      : '追加効果なし'}
                   </CardStatusSkill>
-                  {weaponId ? (
-                    <CardStatusEstimate>
-                      攻撃：{addSign(calculateAtk(weapons[weaponId], status))} /
-                      防御：{addSign(calculateDef(weapons[weaponId], status))} /
-                      回避：{addSign(calculateAvd(weapons[weaponId], status))}
-                    </CardStatusEstimate>
-                  ) : null}
+                  <CardStatusEstimate>
+                    {weaponId
+                      ? `攻撃${addSign(
+                          calculateAtk(weapons[weaponId], status)
+                        )} /
+                      防御${addSign(calculateDef(weapons[weaponId], status))} /
+                      回避${addSign(calculateAvd(weapons[weaponId], status))}`
+                      : null}
+                  </CardStatusEstimate>
                 </SearchListCardStatusItem>
               )
             })}
@@ -160,28 +159,30 @@ const CardSearch: React.FC<Props> = ({ className, isOpen, slotId }: Props) => {
   }, [suggestedCards, handleCardSelect])
 
   return (
-    <CardSearchContainer className={className}>
-      card search /{state.ring}/{state.bungo}
-      <RareSearch>
-        <CheckboxInput
-          options={rareOptions}
-          checked={rareChecked}
-          onChange={handleRareChange}
-        />
-      </RareSearch>
-      <SkillSearch>
-        <CheckboxInput
-          options={skillOptions}
-          checked={skillChecked}
-          onChange={handleSkillChange}
-        />
-      </SkillSearch>
-      <CardNameSearch>
-        <TextInput value={nameInputted} onInput={handleNameChange} />
-      </CardNameSearch>
-      <SearchList>{buildedCardList}</SearchList>
-    </CardSearchContainer>
+    <StyledModal>
+      <CardSearchContainer className={className}>
+        card search /{state.ring}/{state.bungo}
+        <RareSearch>
+          <CheckboxInput
+            options={rareOptions}
+            checked={rareChecked}
+            onChange={handleRareChange}
+          />
+        </RareSearch>
+        <SkillSearch>
+          <CheckboxInput
+            options={skillOptions}
+            checked={skillChecked}
+            onChange={handleSkillChange}
+          />
+        </SkillSearch>
+        <CardNameSearch>
+          <TextInput value={nameInputted} onInput={handleNameChange} />
+        </CardNameSearch>
+        <SearchList>{buildedCardList}</SearchList>
+      </CardSearchContainer>
+    </StyledModal>
   )
 }
 
-export default CardSearch
+export default CardSearchModal

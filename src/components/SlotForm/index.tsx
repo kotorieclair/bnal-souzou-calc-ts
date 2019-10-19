@@ -1,6 +1,6 @@
 import * as R from 'ramda'
 import * as React from 'react'
-import CardSearch from '~/components/CardSearch'
+import CardSearchModal from '~/components/CardSearchModal'
 import {
   BUNGO_WEAPON_LABELS,
   CARD_RARE_LABELS,
@@ -228,6 +228,8 @@ const SlotForm: React.FC<Props> = ({ className, slotId }: Props) => {
           />
         ) : null}
         <div onClick={openCardSearch}>検索</div>
+        {/* {isCardSearchOpen ? <CardSearchModal slotId={slotId} /> : null} */}
+        <CardSearchModal slotId={slotId} />
       </CardInput>
       <StatusInputLabel>文豪のステータス（未入力可）</StatusInputLabel>
       <StatusInput>
